@@ -26,6 +26,10 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'DockerHub'
+        command: 'login'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'DockerHub'
         repository: 'pictly'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
