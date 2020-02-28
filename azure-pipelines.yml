@@ -27,10 +27,11 @@ stages:
       inputs:
         containerRegistry: 'DockerHub'
         command: 'login'
+
     - task: Docker@2
       inputs:
         containerRegistry: 'DockerHub'
-        repository: 'pictly'
+        repository: 'lethiux/pictly'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: |
