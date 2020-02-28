@@ -1,3 +1,5 @@
+FROM scratch
+
 ONBUILD ADD . /src/app
 ONBUILD RUN /usr/local/bin/npm run build:prod --prod --dir /
 
