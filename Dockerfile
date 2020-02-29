@@ -21,4 +21,4 @@ RUN npm install -g @angular/cli@9.0.4
 COPY . /app
 
 # start app
-CMD npm run build:prod
+CMD npm start
