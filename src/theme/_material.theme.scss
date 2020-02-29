@@ -1,0 +1,20 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~@angular/material/theming";
+@import "variables/index";
+
+@include mat-core();
+
+// Set up base color palette values for pictly theme
+$pictly-primary-palette: mat-palette($pictly-celery);
+$pictly-accent-palette: mat-palette($pictly-danube, A200, A100, A400);
+$pictly-warn-palette: mat-palette($pictly-torchred);
+
+// Create the pictly theme
+$pictly-app-theme: mat-light-theme(
+    $pictly-primary-palette,
+    $pictly-accent-palette,
+    $pictly-warn-palette
+);
+
+// Override material theme with pictly theme
+@include angular-material-theme($pictly-app-theme);

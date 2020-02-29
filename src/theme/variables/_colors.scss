@@ -1,0 +1,107 @@
+// Text colors
+$dark-text: #333;
+$light-text: #eee;
+
+// pictly color palette
+$heavy-metal: #343533;
+$pictly-celery: (
+  50 : #f3f9ed,
+  100 : #e1f0d1,
+  200 : #cde7b2,
+  300 : #b9dd93,
+  400 : #aad57c,
+  500 : #9bce65,
+  600 : #93c95d,
+  700 : #89c253,
+  800 : #7fbc49,
+  900 : #6db037,
+  A100 : #fdfffc,
+  A200 : #e0ffc9,
+  A400 : #c3ff96,
+  A700 : #b4ff7c,
+  contrast: (
+    50 : $dark-text,
+    100 : $dark-text,
+    200 : $dark-text,
+    300 : $dark-text,
+    400 : $dark-text,
+    500 : $dark-text,
+    600 : $dark-text,
+    700 : $dark-text,
+    800 : $light-text,
+    900 : $light-text,
+    A100 : $dark-text,
+    A200 : $dark-text,
+    A400 : $dark-text,
+    A700 : $dark-text,
+  )
+);
+$pictly-danube: (
+  50 : #edf3f9,
+  100 : #d2e0f0,
+  200 : #b4cce7,
+  300 : #95b8dd,
+  400 : #7fa8d5,
+  500 : #6899ce,
+  600 : #6091c9,
+  700 : #5586c2,
+  800 : #4b7cbc,
+  900 : #3a6bb0,
+  A100 : #fdfeff,
+  A200 : #cadfff,
+  A400 : #97c0ff,
+  A700 : #7eb1ff,
+  contrast: (
+    50 : $dark-text,
+    100 : $dark-text,
+    200 : $dark-text,
+    300 : $dark-text,
+    400 : $dark-text,
+    500 : $dark-text,
+    600 : $light-text,
+    700 : $light-text,
+    800 : $light-text,
+    900 : $light-text,
+    A100 : $dark-text,
+    A200 : $dark-text,
+    A400 : $dark-text,
+    A700 : $dark-text,
+  )
+);
+$pictly-torchred: (
+  50 : #ffe0e7,
+  100 : #ffb3c2,
+  200 : #ff8099,
+  300 : #ff4d70,
+  400 : #ff2652,
+  500 : #ff0033,
+  600 : #ff002e,
+  700 : #ff0027,
+  800 : #ff0020,
+  900 : #ff0014,
+  A100 : #ffffff,
+  A200 : #fff2f3,
+  A400 : #ffbfc2,
+  A700 : #ffa6a9,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+// Other global colors
+$success: $pictly-celery(700);
+$info: $pictly-danube(700);
+$error: $pictly-torchred(500);

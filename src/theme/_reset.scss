@@ -1,0 +1,16 @@
+html, body, .pictly-wrapper {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/*
+PLEASE READ:
+Due to Angular transclusion, the route app component is added as a sibling of router-outlet,
+but it also adds the app component itself as the root which bypasses our flex-layout implementation.
+This is because the app component (e.g. pictly-home) is added programmatically, so we can't add fxLayout and
+fxFlex rules to these app components.
+ */
+router-outlet ~ * {
+  height: 100%;
+}
