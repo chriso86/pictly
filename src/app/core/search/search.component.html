@@ -1,0 +1,18 @@
+<!-- Template-driven form for address search -->
+<form fxFlex="auto"
+      fxLayout="row"
+      id="search-address-form"
+      name="search-address-form"
+      novalidate>
+
+    <!-- Search address input -->
+    <mat-form-field fxFlex="grow">
+        <mat-label>Search for an address...</mat-label>
+
+        <input [(ngModel)]="address"
+               (input)="processAddressSearch($event)"
+               matInput
+               placeholder="E.g. New York, or 2 Campbell Avenue"/>
+    </mat-form-field>
+
+</form>

@@ -12,13 +12,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "pictly",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "pictly",
       "kebab-case"
     ],
     "import-blacklist": [
