@@ -1,6 +1,6 @@
 {
   "name": "pictly",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -19,6 +19,7 @@
     "@angular/core": "~9.0.3",
     "@angular/flex-layout": "github:angular/flex-layout-builds",
     "@angular/forms": "~9.0.3",
+    "@angular/google-maps": "^9.1.0",
     "@angular/material": "^9.1.0",
     "@angular/platform-browser": "~9.0.3",
     "@angular/platform-browser-dynamic": "~9.0.3",
