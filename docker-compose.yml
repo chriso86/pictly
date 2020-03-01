@@ -4,9 +4,7 @@ services:
 
   example:
     container_name: pictly
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: lethiux/pictly
     volumes:
       - '.:/app'
       - '/app/node_modules'
