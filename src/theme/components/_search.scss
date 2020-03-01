@@ -1,0 +1,34 @@
+@import "../variables/index";
+
+.pictly-search {
+  &__filter {
+    overflow: hidden;
+    padding: 0 ($app-padding / 2) !important;
+  }
+
+  &__photos {
+    overflow-y: scroll;
+  }
+
+  &__photo {
+    cursor: pointer;
+    margin-bottom: $app-padding;
+    padding: 0 !important;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      margin: 0 !important;
+    }
+
+    &-column {
+      max-width: 0 !important;
+    }
+  }
+
+  &__no-results {
+    padding: 15px;
+    font-size: 1.25em;
+    color: $muted-light;
+  }
+}

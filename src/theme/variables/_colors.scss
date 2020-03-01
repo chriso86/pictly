@@ -102,6 +102,8 @@ $pictly-torchred: (
 );
 
 // Other global colors
-$success: $pictly-celery(700);
-$info: $pictly-danube(700);
-$error: $pictly-torchred(500);
+$success: map-get($pictly-celery, 700);
+$info: map-get($pictly-danube, 700);
+$error: map-get($pictly-torchred, 500);
+$muted-light: #ccc;
+$muted-dark: #999;
