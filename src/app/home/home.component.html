@@ -1,12 +1,18 @@
-<div fxLayout="row" fxFlex="0 0 100%">
+<div fxFlex="0 0 100%" fxLayout="row">
 
     <!-- Search Component -->
-    <aside fxFlex.gt-sm="1 1 30%"
+    <aside fxFlex.gt-sm="1 1 25%"
            fxLayout="column">
 
         <mat-card fxFlex="0 0 100%">
 
-            <pictly-search>
+            <pictly-search (loadMore)="setFlickrImages($event)"
+                           (selectPhoto)="openSlideshowForPhoto($event)"
+                           [boundingBox]="boundingBoxModel"
+                           [paging]="pagingModel"
+                           [photosModel]="photosModel"
+                           [position]="positionModel"
+                           fxFlex="0 0 100%">
             </pictly-search>
 
         </mat-card>
@@ -14,10 +20,15 @@
     </aside>
 
     <!-- Map -->
-    <section fxFlex.gt-md="1 1 70%"
+    <section fxFlex.gt-md="1 1 75%"
              fxLayout="column">
 
-        
+        <pictly-map [boundingBox]="boundingBoxModel"
+                    [photosModel]="photosModel"
+                    [position]="positionModel"
+                    data-full-height
+                    data-full-width>
+        </pictly-map>
 
     </section>
 </div>
