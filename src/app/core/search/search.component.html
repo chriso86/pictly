@@ -1,18 +1,125 @@
-<!-- Template-driven form for address search -->
-<form fxFlex="auto"
-      fxLayout="row"
-      id="search-address-form"
-      name="search-address-form"
-      novalidate>
+<section fxFlex="auto"
+         fxLayout="column">
 
-    <!-- Search address input -->
-    <mat-form-field fxFlex="grow">
-        <mat-label>Search for an address...</mat-label>
+    <!-- Template-driven form for address search -->
+    <form fxFlex="0 0 45px"
+          fxLayout="row"
+          id="search-address-form"
+          name="search-address-form"
+          novalidate>
 
-        <input [(ngModel)]="address"
-               (input)="processAddressSearch($event)"
-               matInput
-               placeholder="E.g. New York, or 2 Campbell Avenue"/>
-    </mat-form-field>
+        <!-- Search address input -->
+        <mat-form-field fxFlex="grow">
+            <mat-label>Search for an address...</mat-label>
 
-</form>
+            <input #searchComponent
+                   id="address-search"
+                   matInput
+                   name="address-search"
+                   placeholder="E.g. New York, or 2 Campbell Avenue"/>
+        </mat-form-field>
+
+    </form>
+
+    <!-- Search options -->
+    <mat-card [@toggleFilter]="isFilterOpen ? 'open' : 'closed'"
+              class="pictly-search__filter"
+              fxFlex="1 1 auto"
+              fxLayout="row"
+              fxLayoutAlign="end">
+
+        <mat-form-field *ngIf="isFilterOpen"
+                        fxFlex="0 0 60%">
+            <mat-chip-list #chipList aria-label="Search tags">
+                <!-- Tags -->
+                <mat-chip (removed)="removeTag(tag)"
+                          *ngFor="let tag of paging.tags"
+                          [removable]="true"
+                          [selectable]="false">
+                    {{tag.name}}
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+
+                <!-- Input for tags -->
+                <input (matChipInputTokenEnd)="addTag($event)"
+                       [matChipInputAddOnBlur]="true"
+                       [matChipInputFor]="chipList"
+                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                       placeholder="New tag...">
+            </mat-chip-list>
+        </mat-form-field>
+
+        <!-- Options -->
+        <mat-form-field *ngIf="isFilterOpen"
+                        fxFlex="0 0 20%">
+            <mat-label>Photos per Page</mat-label>
+
+            <!-- No. of items per page -->
+            <mat-select (selectionChange)="setItemsPerPage($event)"
+                        [value]="paging.itemCountOptions[0]">
+                <mat-option *ngFor="let itemCount of paging.itemCountOptions"
+                            [value]="itemCount">
+                    {{itemCount}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Toggle options button -->
+        <button (click)="toggleFilter()"
+                class="pictly-search__filter-button"
+                fxFlex="0 0 20%"
+                mat-button>
+            <small *ngIf="!isFilterOpen"> OPTIONS </small>
+            <mat-icon *ngIf="isFilterOpen">close</mat-icon>
+        </button>
+    </mat-card>
+
+    <!-- Placeholder: No results found at location -->
+    <div *ngIf="!photosModel.getValue().totalPhotos"
+         class="pictly-search__no-results"
+         fxFlex="auto"
+         fxLayout="row"
+         fxLayoutAlign="center">
+        No photos found, try another location!
+    </div>
+
+    <!-- Location results -->
+    <mat-card *ngIf="photosModel.getValue().totalPhotos > 0">
+        Showing {{photosModel.getValue()?.photos.length}} of {{photosModel.getValue()?.totalPhotos}} photos for this location
+    </mat-card>
+
+    <!-- Photo cards -->
+    <div class="pictly-search__photos"
+         fxFlex="0 0 calc(100% - 140px)"
+         fxLayout="column">
+        <mat-card (click)="openSlideshow(photo)"
+                  *ngFor="let photo of (photosModel | async).photos"
+                  [title]="photo.title"
+                  class="pictly-search__photo"
+                  fxFlex="1 1 300px"
+                  fxLayout="row">
+
+            <!-- Column used to assist the mat-card-title wrapping and ellipsis styles -->
+            <div class="pictly-search__photo-column"
+                 fxFlex="0 0 100%"
+                 fxLayout="column">
+
+                <img [alt]="photo.title"
+                     [src]="photo.url"
+                     mat-card-image/>
+
+            </div>
+        </mat-card>
+
+        <!-- Load more photos button -->
+        <mat-card *ngIf="photosModel.getValue().totalPhotos > photosModel.getValue()?.photos.length"
+                  fxLayout="row">
+            <button (click)="loadMorePhotos()"
+                    fxFlex="1 0 100%"
+                    mat-button>
+                LOAD MORE
+            </button>
+        </mat-card>
+    </div>
+
+</section>
