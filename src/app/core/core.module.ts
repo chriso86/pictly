@@ -6,6 +6,11 @@ import {SlideshowComponent} from './slideshow/slideshow.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import {GoogleMapsModule} from '@angular/google-maps';
+import {LocalStorageService} from './local-storage/local-storage.service';
+import {FlickrGateway} from './flickr/flickr.gateway';
+import {HttpClientModule} from '@angular/common/http';
+import {CommonModule} from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -17,7 +22,10 @@ import {GoogleMapsModule} from '@angular/google-maps';
         FormsModule,
         MaterialModule,
         FlexLayoutModule,
-        GoogleMapsModule
+        GoogleMapsModule,
+        HttpClientModule,
+        CommonModule,
+        BrowserAnimationsModule
     ],
     exports: [
         FormsModule,
@@ -26,7 +34,14 @@ import {GoogleMapsModule} from '@angular/google-maps';
         SlideshowComponent,
         MaterialModule,
         FlexLayoutModule,
-        GoogleMapsModule
+        GoogleMapsModule,
+        HttpClientModule,
+        CommonModule,
+        BrowserAnimationsModule
+    ],
+    providers: [
+        LocalStorageService,
+        FlickrGateway
     ]
 })
 export class CoreModule {
