@@ -1,1 +1,130 @@
-<p>slideshow works!</p>
+<div class="pictly-slideshow" fxLayout="column">
+    <div fxFlex="0 0 100%"
+         fxLayout="row">
+
+        <!-- Photo -->
+        <section class="pictly-slideshow__image"
+                 fxFlex="0 0 75%">
+            <img [alt]="data.selectedPhoto.title"
+                 [src]="data.selectedPhoto.url"
+                 [title]="data.selectedPhoto.title"
+                 tabindex="0"/>
+        </section>
+
+        <!-- Photo Details -->
+        <mat-card fxFlex="0 0 25%"
+                  fxLayout="column">
+
+            <!-- Close icon button -->
+            <div fxFlex="0 0 30px"
+                 fxLayout="row"
+                 fxLayoutAlign="end">
+                <mat-icon (click)="onCloseClick()"
+                          data-pointer-cursor>
+                    close
+                </mat-icon>
+            </div>
+
+            <!-- User Header -->
+            <mat-card class="pictly-slideshow__user"
+                      fxFlex="0 0 80px"
+                      fxLayout="row">
+
+                <!-- User profile picture -->
+                <a [href]="data.selectedPhoto.user.url"
+                   target="_blank">
+                    <img [alt]="data.selectedPhoto.user.username"
+                         [src]="data.selectedPhoto.user.profilePictureUrl"
+                         [title]="data.selectedPhoto.user.username"
+                         fxFlex="0 0 48px"/>
+                </a>
+
+                <div class="pictly-slideshow__user-text"
+                     fxFlex="grow"
+                     fxLayout="column">
+
+                    <!-- User name -->
+                    <div class="pictly-slideshow__user-subtext"> a photo by <span class="pictly-slideshow__user-name">
+                        <a [href]="data.selectedPhoto.user.url"
+                           target="_blank">
+                            {{data.selectedPhoto.user.username}}
+                            <mat-icon></mat-icon>
+                        </a>
+                    </span></div>
+
+                    <!-- User location -->
+                    <small data-muted-dark> {{data.selectedPhoto.user.location}} </small>
+
+                </div>
+            </mat-card>
+
+            <!-- Photo Information -->
+            <div fxFlex="auto"
+                 fxLayout="column">
+                <br>
+
+                <!-- Title -->
+                <ng-container *ngIf="data.selectedPhoto.title">
+                    <small data-muted-dark> TITLE </small>
+                    <div [innerHTML]="data.selectedPhoto.title"></div>
+
+                    <br>
+                </ng-container>
+
+                <!-- Description -->
+                <ng-container *ngIf="data.selectedPhoto.description">
+                    <small data-muted-dark> DESCRIPTION </small>
+                    <div [innerHTML]="data.selectedPhoto.description"></div>
+
+                    <br>
+                </ng-container>
+
+                <!-- Date Uploaded -->
+                <ng-container *ngIf="data.selectedPhoto.dateUploaded">
+                    <small data-muted-dark> DATE UPLOADED </small>
+                    <div> {{data.selectedPhoto.dateUploaded | date : 'medium'}} </div>
+
+                    <br>
+                </ng-container>
+
+                <!-- Taken at -->
+                <ng-container
+                        *ngIf="data.selectedPhoto.location.neighbourhood || data.selectedPhoto.location.locality || data.selectedPhoto.location.region || data.selectedPhoto.location.country">
+                    <small data-muted-dark> TAKEN AT </small>
+                    <div>
+                        {{data.selectedPhoto.location.neighbourhood}},
+                        {{data.selectedPhoto.location.locality}}, <br>
+                        {{data.selectedPhoto.location.region}},
+                        {{data.selectedPhoto.location.country}}
+                    </div>
+
+                    <br>
+                </ng-container>
+
+                <!-- Date taken -->
+                <ng-container *ngIf="data.selectedPhoto.dateTaken">
+                    <small data-muted-dark> DATE TAKEN </small>
+                    <div> {{data.selectedPhoto.dateTaken | date : 'medium'}} </div>
+
+                    <br>
+                </ng-container>
+
+                <!-- License -->
+                <ng-container *ngIf="data.selectedPhoto.license.name">
+                    <small data-muted-dark> LICENSE </small>
+                    <div>
+                        <a *ngIf="data.selectedPhoto.license.url"
+                           [href]="data.selectedPhoto.license.url"
+                           target="_blank">
+                            {{data.selectedPhoto.license.name}}
+                        </a>
+
+                        <span *ngIf="!data.selectedPhoto.license.url">
+                        {{data.selectedPhoto.license.name}}
+                    </span>
+                    </div>
+                </ng-container>
+            </div>
+        </mat-card>
+    </div>
+</div>
