@@ -18,3 +18,8 @@ $pictly-app-theme: mat-light-theme(
 
 // Override material theme with pictly theme
 @include angular-material-theme($pictly-app-theme);
+
+// Manual GLOBAL Material Theme Overrides
+mat-dialog-container {
+  padding: 0 !important;
+}

@@ -1,3 +1,5 @@
+@import "variables/index";
+
 html, body, .pictly-wrapper {
   margin: 0;
   padding: 0;
@@ -13,4 +15,33 @@ fxFlex rules to these app components.
  */
 router-outlet ~ * {
   height: 100%;
+}
+
+[data-full-height-minus-header] {
+  height: $app-height-minus-header;
+}
+
+[data-full-height] {
+  height: 100%;
+}
+
+[data-full-width] {
+  width: 100%;
+}
+
+[data-muted-dark] {
+  color: $muted-dark;
+}
+
+[data-muted-light] {
+  color: $muted-light;
+}
+
+[data-pointer-cursor] {
+  cursor: pointer;
+}
+
+a {
+  color: $info;
+  text-decoration: none;
 }
