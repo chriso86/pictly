@@ -19,8 +19,3 @@ RUN npm install -g @angular/cli@9.0.4
 
 # add app
 COPY . /app
-
-EXPOSE 4200
-
-# start app
-CMD npm start
