@@ -8,6 +8,7 @@ pictly-slideshow {
   height: 100%;
 
   &__image {
+    position: relative;
     background: #000;
 
     img {
@@ -15,6 +16,40 @@ pictly-slideshow {
       height: 100%;
       object-fit: contain;
       text-align: center;
+    }
+
+    &-navigate {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      margin-top: -24px;
+      background: rgba(255, 255, 255, 0);
+      text-align: center;
+      vertical-align: center;
+      cursor: pointer;
+
+      &.left {
+        left: 0;
+        margin-left: $app-padding / 2;
+      }
+
+      &.right {
+        right: 0;
+        margin-right: $app-padding / 2;
+      }
+
+      mat-icon {
+        height: 48px;
+        width: 48px;
+        font-size: 48px;
+        color: $muted-light;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
     }
   }
 

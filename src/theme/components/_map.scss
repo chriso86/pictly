@@ -1,0 +1,31 @@
+@import "../variables/index";
+
+.pictly-map {
+  &__thumb {
+    &-title {
+      max-width: 250px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 1.2em;
+    }
+
+    &-user {
+      max-width: 250px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: $muted-dark;
+    }
+
+    &-image {
+      text-align: center;
+      padding: $app-padding / 2;
+
+      img {
+        max-height: 180px;
+        max-width: 250px;
+      }
+    }
+  }
+}

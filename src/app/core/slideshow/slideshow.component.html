@@ -5,10 +5,22 @@
         <!-- Photo -->
         <section class="pictly-slideshow__image"
                  fxFlex="0 0 75%">
+            <div *ngIf="data.photos.indexOf(data.selectedPhoto) > 0"
+                 class="pictly-slideshow__image-navigate left"
+                 (click)="data.selectPreviousPhoto()">
+                <mat-icon>navigate_before</mat-icon>
+            </div>
+
             <img [alt]="data.selectedPhoto.title"
                  [src]="data.selectedPhoto.url"
                  [title]="data.selectedPhoto.title"
                  tabindex="0"/>
+
+            <div *ngIf="data.photos.indexOf(data.selectedPhoto) < (data.photos.length - 1)"
+                 class="pictly-slideshow__image-navigate right"
+                 (click)="data.selectNextPhoto()">
+                <mat-icon>navigate_next</mat-icon>
+            </div>
         </section>
 
         <!-- Photo Details -->

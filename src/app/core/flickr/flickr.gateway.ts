@@ -10,6 +10,7 @@ import {GetLicensesDto} from './get-licenses.dto';
 import {SearchPhotosModel} from '../shared-models/search-photos.model';
 import {PhotoWithInfoDto} from './photo-with-info.dto';
 import {TagModel} from '../shared-models/tag.model';
+import {PhotoDto} from './photo.dto';
 
 @Injectable({providedIn: 'root'})
 export class FlickrGateway {
@@ -77,7 +78,7 @@ export class FlickrGateway {
                     if (response.stat === 'ok') {
                         return new SearchPhotosModel(
                             Number(response.photos.total),
-                            response.photos.photo.map((photo: any) => {
+                            response.photos.photo.map((photo: PhotoDto) => {
                                 return new PhotoModel(
                                     photo.id,
                                     `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`,

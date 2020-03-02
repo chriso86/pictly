@@ -5,6 +5,7 @@ import {GoogleMap, MapInfoWindow, MapMarker} from '@angular/google-maps';
 import {BoundingBoxModel} from '../shared-models/bounding-box.model';
 import {PhotoModel} from '../shared-models/photo.model';
 import {SearchPhotosModel} from '../shared-models/search-photos.model';
+import {MarkerModel} from '../shared-models/marker.model';
 
 @Component({
     selector: 'pictly-map',
@@ -14,7 +15,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     // Public properties
     center: google.maps.LatLngLiteral;
     markerOptions = {draggable: false};
-    markerPositions: google.maps.LatLngLiteral[] = [];
+    markers: MarkerModel[] = [];
+    activeMarker: MarkerModel;
 
 
     // Input parameters
@@ -62,7 +64,9 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 
     // Public methods
-    openInfoWindow(marker: MapMarker) {
+    openInfoWindow(markerModel: MarkerModel, marker: MapMarker) {
+        this.activeMarker = markerModel;
+
         this.infoWindow.open(marker);
     }
 
@@ -70,16 +74,19 @@ export class MapComponent implements OnInit, AfterViewInit {
     // Private methods
     private registerPhotosListener(): void {
         this.photosModel.subscribe((searchPhotosModel: SearchPhotosModel) => {
-            this.markerPositions = searchPhotosModel.photos
+            this.markers = searchPhotosModel.photos
                 .filter((photo: PhotoModel) => !!photo.location)
                 .map((photo: PhotoModel) => {
                     return {
-                        lat: Number(photo.location.latitude),
-                        lng: Number(photo.location.longitude)
+                        title: photo.title,
+                        user: photo.user.username,
+                        url: photo.url,
+                        location: {
+                            lat: Number(photo.location.latitude),
+                            lng: Number(photo.location.longitude)
+                        }
                     };
                 });
-
-            console.log(this.markerPositions);
         });
     }
 

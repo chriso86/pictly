@@ -1,4 +1,10 @@
-<div fxFlex="0 0 100%" fxLayout="row">
+<!-- Loader -->
+<div *ngIf="loader.state.getValue() === loadingStates.Loading" class="pictly-loader">
+    <pictly-loader></pictly-loader>
+</div>
+
+<!-- Content -->
+<div *ngIf="loader.state.getValue() === loadingStates.AwaitingUserInput" fxFlex="0 0 100%" fxLayout="row">
 
     <!-- Search Component -->
     <aside fxFlex.gt-sm="1 1 25%"
@@ -30,5 +36,10 @@
                     data-full-width>
         </pictly-map>
 
+    </section>
+
+    <!-- Favourites -->
+    <section class="pictly-favourites">
+        <!-- TODO: Implement favourites -->
     </section>
 </div>

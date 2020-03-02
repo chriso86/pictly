@@ -11,6 +11,8 @@ import {FlickrGateway} from './flickr/flickr.gateway';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AbacusLoaderModule} from './loader/loader.module';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
     declarations: [
@@ -25,7 +27,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         GoogleMapsModule,
         HttpClientModule,
         CommonModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        AbacusLoaderModule
     ],
     exports: [
         FormsModule,
@@ -37,7 +40,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         GoogleMapsModule,
         HttpClientModule,
         CommonModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        AbacusLoaderModule
     ],
     providers: [
         LocalStorageService,

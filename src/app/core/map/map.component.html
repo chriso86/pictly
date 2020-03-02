@@ -2,10 +2,24 @@
             [center]="center"
             width="100%"
             height="100%">
-    <map-marker #marker
-                *ngFor="let markerPosition of markerPositions"
-                [position]="markerPosition"
+    <!-- Marker -->
+    <map-marker #markerElement
+                *ngFor="let marker of markers"
+                [title]="marker.title"
+                [position]="marker.location"
                 [options]="markerOptions"
-                (mapClick)="openInfoWindow(marker)"></map-marker>
-    <map-info-window>Info Window content</map-info-window>
+                (mapClick)="openInfoWindow(marker, markerElement)">
+    </map-marker>
+
+    <!-- Marker info -->
+    <map-info-window>
+        <div class="pictly-map__thumb-title"> {{activeMarker?.title}} </div>
+        <div class="pictly-map__thumb-user"> by {{activeMarker?.user}} </div>
+
+        <div class="pictly-map__thumb-image">
+            <img [src]="activeMarker?.url"
+                 [title]="activeMarker?.title"
+                 [alt]="activeMarker?.title" />
+        </div>
+    </map-info-window>
 </google-map>

@@ -28,7 +28,8 @@
               fxLayout="row"
               fxLayoutAlign="end">
 
-        <mat-form-field *ngIf="isFilterOpen"
+        <!-- TODO: Chris - Implement the tags -->
+        <mat-form-field *ngIf="isFilterOpen && false"
                         fxFlex="0 0 60%">
             <mat-chip-list #chipList aria-label="Search tags">
                 <!-- Tags -->
@@ -94,7 +95,6 @@
          fxLayout="column">
         <mat-card (click)="openSlideshow(photo)"
                   *ngFor="let photo of (photosModel | async).photos"
-                  [title]="photo.title"
                   class="pictly-search__photo"
                   fxFlex="0 0 auto"
                   fxLayout="row">
@@ -107,6 +107,16 @@
                 <img [alt]="photo.title"
                      [src]="photo.url"
                      mat-card-image/>
+
+                <div class="pictly-search__photo-text">
+                    <div class="pictly-search__photo-title">
+                        {{photo.title}}
+                    </div>
+
+                    <div class="pictly-search__photo-description">
+                        {{photo.description}}
+                    </div>
+                </div>
 
             </div>
         </mat-card>

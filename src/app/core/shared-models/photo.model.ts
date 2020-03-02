@@ -1,7 +1,6 @@
 import {LicenseModel} from './license.model';
 import {UserModel} from './user.model';
 import {LocationModel} from './location.model';
-import {PhotoWithInfoDto} from '../flickr/photo-with-info.dto';
 
 export class PhotoModel {
     id: string;
