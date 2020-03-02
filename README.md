@@ -1,3 +1,10 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/56baabd8f29d493b90cbf6b6c22d5020)](https://app.codacy.com/manual/chriso86/pictly?utm_source=github.com&utm_medium=referral&utm_content=chriso86/pictly&utm_campaign=Badge_Grade_Dashboard)
+[![Build Status](https://dev.azure.com/cnoliver86/pictly/_apis/build/status/chriso86.pictly?branchName=master)](https://dev.azure.com/cnoliver86/pictly/_build/latest?definitionId=1&branchName=master)
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/lethiux/pictly)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/lethiux/pictly)
+![GitHub repo size](https://img.shields.io/github/repo-size/chriso86/pictly)
+![GitHub](https://img.shields.io/github/license/chriso86/pictly)
+
 # pictly
 
 Search for photos based on location which you can search for using Google Maps.
