@@ -54,3 +54,5 @@ RUN sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' /usr/lib/sonar-sca
 # be easily overridden by passing them in as part of the `docker run` command.
 # This allows the default /app base dir to be overridden by users as-needed.
 CMD ["sonar-scanner", "-Dsonar.projectBaseDir=/app"]
+
+RUN sonar-scanner
