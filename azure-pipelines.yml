@@ -36,3 +36,12 @@ stages:
         Dockerfile: '**/Dockerfile'
         tags: |
               $(tag)
+
+    - task: CmdLine@2
+      inputs:
+        script: |
+          sonar-scanner \
+            -Dsonar.projectKey=pictly \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=https://8080-06cd0fab-2ba3-45d4-accd-40d5f4cf86d8.asia-southeast1.cloudshell.dev \
+            -Dsonar.login=c0609db03246dd58a5429a28ed43dace5a893188
