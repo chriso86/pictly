@@ -1,5 +1,5 @@
 # base image
-FROM node:12.16.1
+FROM node:alpine
 
 # install chrome for protractor tests
 # RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -20,39 +20,17 @@ RUN npm install -g @angular/cli@9.0.4
 # add app
 COPY . /app
 
-# non-root user
-ENV USER=sonarscanner
-ENV UID=12345
-ENV GID=23456
-RUN addgroup --gid $GID sonarscanner
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --ingroup "$USER" \
-    --no-create-home \
-    --uid "$UID" \
-    "$USER"
+ENV SONAR_SCANNER_VERSION=4.3.0.2102
+ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk/jre
+ENV SONAR_SCANNER_OPTS="-Xmx512m -Dsonar.host.url=https://8080-06cd0fab-2ba3-45d4-accd-40d5f4cf86d8.asia-southeast1.cloudshell.dev"
+ENV PATH $PATH:/sonar-scanner/bin:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
 
-ARG SCANNER_VERSION=4.5.0.2216
-ENV SCANNER_FILE=sonar-scanner-cli-${SCANNER_VERSION}-linux.zip
-ENV SCANNER_EXPANDED_DIR=sonar-scanner-${SCANNER_VERSION}-linux
-RUN curl --insecure -o ${SCANNER_FILE} \
-    -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${SCANNER_FILE} && \
-	unzip -q ${SCANNER_FILE} && \
-	rm ${SCANNER_FILE} && \
-	mv ${SCANNER_EXPANDED_DIR} /usr/lib/sonar-scanner && \
-	ln -s /usr/lib/sonar-scanner/bin/sonar-scanner /usr/local/bin/sonar-scanner
+ADD "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONAR_SCANNER_VERSION}.zip" /
 
-ENV SONAR_RUNNER_HOME=/usr/lib/sonar-scanner
+RUN set -x \
+        && apk add --no-cache unzip openjdk8-jre \
+        && unzip sonar-scanner-cli-${SONAR_SCANNER_VERSION}.zip \
+        && ln -s /sonar-scanner-${SONAR_SCANNER_VERSION} /sonar-scanner \
+        && rm -f sonar-scanner-cli-*.zip
 
-COPY sonar-runner.properties /usr/lib/sonar-scanner/conf/sonar-scanner.properties
-
-# ensure Sonar uses the provided Java for musl instead of a borked glibc one
-RUN sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' /usr/lib/sonar-scanner/bin/sonar-scanner
-
-# Separating ENTRYPOINT and CMD operations allows for core execution variables to
-# be easily overridden by passing them in as part of the `docker run` command.
-# This allows the default /app base dir to be overridden by users as-needed.
 CMD ["sonar-scanner", "-Dsonar.projectBaseDir=/app"]
-
-RUN sonar-scanner
